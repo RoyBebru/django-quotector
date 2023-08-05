@@ -1,0 +1,53 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+    {% for quote in quotes %}
+    <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+        <span class="text" itemprop="text">“{{ quote.quote }}”</span>
+        <span>by <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+        <a href="/about/{{ quote.author.fullname }}/">(about)</a>
+        </span>
+        <div class="tags">
+            Tags:
+            {% with tags=quote.tags.all %}
+            <meta class="keywords" itemprop="keywords" content="{% for tag in tags %}{{ tag }}{% if not forloop.last %},{% endif %}{%  endfor %}"/>
+            {% for tag in tags %}<a class="tag" href="/page/1/{{ tag }}/">{{ tag }}</a>
+            {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+    {% endfor %}
+    <nav>
+        <ul class="pager">
+            {% if page_prev > 0 %}
+            <li class="previous">
+                <a href="/page/{{ page_prev }}/{{ with_tag }}/"><span aria-hidden="true">&larr;</span> Previous</a>
+            </li>
+            {% endif %}
+            {% if page_next > 0 %}
+            <li class="next">
+                <a href="/page/{{ page_next }}/{{ with_tag }}/">Next <span aria-hidden="true">&rarr;</span></a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    </div>
+
+    <div class="col-md-4 tags-box">
+
+            <h2>Top Ten tags</h2>
+
+            {% for tag in top_of_tags %}
+            <span class="tag-item">
+            <a class="tag" style="font-size: {% cycle '28' '26' '26' '24' '22' '14' '10' '8' '8' '6' %}px" href="/page/1/{{ tag }}/">{{ tag }}</a>
+            </span>
+            {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+#header, .breadcrumbs {
+    background: DarkSlateGray;
+}
+
+.my-content-header {
+    display: flex;
+    background: DarkSlateGray;
+}
+
+#my-caption-header {
+    background: DarkSlateGray;
+}
+
+.section {
+    white-space: nowrap;
+}
+
+.my-scrapy-content-button {
+    white-space: nowrap;
+    height: 15px;
+    width: 15px;
+    background-color: red;
+}

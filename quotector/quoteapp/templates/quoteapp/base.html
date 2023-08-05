@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotes to Scrape</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quoteapp/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'quoteapp/main.css' %}">
+</head>
+<body>
+    <div class="container">
+
+        <div class="row header-box">
+            <div class="col-md-8">
+                <h1>
+                    <a href="/" style="text-decoration: none">Quotes to Scrape</a>
+                </h1>
+            </div>
+            <div class="col-md-4 menu-container">
+                <p>
+                    {% if user.is_authenticated %}
+                    <ul class="list-inline">
+                        <li>Welcome <b>"{{ user.username }}"!</b></li>
+                        <li><a href="{% url 'users:profile' %}" class="btn btn-info btn-rounded menu-item" role="button">Profile</a></li>
+                        <li><a href="{% url 'users:logout' %}" class="btn btn-info btn-rounded menu-item" role="button">Logout</a></li>
+                    </ul>
+                    </p><p>
+                    <ul class="list-inline">
+                        <li><a href="{% url 'quoteapp:author' %}" class="btn btn-info btn-rounded menu-item" role="button">Add Author</a></li>
+                        <li><a href="{% url 'quoteapp:quote' %}" class="btn btn-info btn-rounded menu-item" role="button">Add Quote</a></li>
+                        <li><a href="{% url 'quoteapp:tag' %}" class="btn btn-info btn-rounded menu-item" role="button">Add Tag</a></li>
+                    </ul>
+                    {% else %}
+                    <ul class="list-inline">
+                        <li><a href="{% url 'users:signup' %}" class="btn btn-info btn-rounded menu-item" role="button">Sign Up</a></li>
+                        <li><a href="{% url 'users:login' %}" class="btn btn-info btn-rounded menu-item" role="button">Login</a></li>
+                    </ul>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+    {% block content %} {% endblock %}
+
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">
+                Quotes by: <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
+            </p>
+            <p class="copyright">
+                Made with <span class='zyte'>❤</span> by <a class='zyte' href="https://www.zyte.com">Zyte</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
