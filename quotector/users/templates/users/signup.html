@@ -17,6 +17,13 @@
     </div>
     <div class="row">
         <div class="form-group col-xs-3">
+            <label for="email">Email:</label>
+            {{ form.email }}
+            <span>{{ form.errors.email }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-3">
             <label for="password1">Password:</label>
             {{ form.password1 }}
             <span>{{ form.errors.password1 }}</span>

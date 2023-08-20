@@ -23,6 +23,15 @@
                 {{ form.password }}
             </div>
         </div>
-        <input type="submit" value="Login" class="btn btn-primary"/>
+        <div class="row">
+            <div class="form-group col-xs-3">
+                <input type="submit" value="Login" class="btn btn-primary"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-3 small text-left">
+                <a href="{% url "users:password_reset" %}" class="text-left"><i>Forgot Password?</i></a>
+            </div>
+        </div>
     </form>
 {% endblock %}
